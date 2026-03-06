@@ -31,8 +31,17 @@ async def anti_manito_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not msg or not msg.text:
         return
 
+    text = msg.text.lower()
+
     if "👍" in msg.text:
         await msg.reply_text("SIN MANITOOO 🪚")
+
+    if "manito" in text:
+        await context.bot.set_message_reaction(
+            chat_id=msg.chat.id,
+            message_id=msg.message_id,
+            reaction=["👀"],
+        )
 
 
 app = ApplicationBuilder().token(TOKEN).build()
